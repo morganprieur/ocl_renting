@@ -11,15 +11,41 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        # ('oc_lettings_site', '0002_auto_20240514_1240.py'),
     ]
 
     operations = [
-        migrations.CreateModel(
-            name='Profile',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('favorite_city', models.CharField(blank=True, max_length=64)),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+        migrations.SeparateDatabaseAndState(
+            state_operations=[
+                migrations.CreateModel(
+                    name='Profile',
+                    fields=[
+                        ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                        ('favorite_city', models.CharField(blank=True, max_length=64)),
+                        ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                    ],
+                ),
             ],
-        ),
+            database_operations=[],
+        )
     ]
+
+
+#      operations = [
+# # -        migrations.AlterField(
+# # -            model_name='sale',
+# # -            name='product',
+# # -            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='product.Product'),
+# # -        ),
+# +        migrations.SeparateDatabaseAndState(
+# +            state_operations=[
+# +                migrations.AlterField(
+# +                    model_name='sale',
+# +                    name='product',
+# +                    field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='product.Product'),
+# +                ),
+# +            ],
+# +            # You're reusing an existing table, so do nothing
+# +            database_operations=[],
+# +        )
+#      ]

@@ -10,27 +10,54 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ('oc_lettings_site', '0002_auto_20240514_1240.py'),
+        # # ('product', '0001_initial'),
     ]
 
     operations = [
-        migrations.CreateModel(
-            name='Address',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('number', models.PositiveIntegerField(validators=[django.core.validators.MaxValueValidator(9999)])),
-                ('street', models.CharField(max_length=64)),
-                ('city', models.CharField(max_length=64)),
-                ('state', models.CharField(max_length=2, validators=[django.core.validators.MinLengthValidator(2)])),
-                ('zip_code', models.PositiveIntegerField(validators=[django.core.validators.MaxValueValidator(99999)])),
-                ('country_iso_code', models.CharField(max_length=3, validators=[django.core.validators.MinLengthValidator(3)])),
+        migrations.SeparateDatabaseAndState(
+            state_operations=[
+                migrations.CreateModel(
+                    name='Address',
+                    fields=[
+                        ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                        ('number', models.PositiveIntegerField(validators=[django.core.validators.MaxValueValidator(9999)])),
+                        ('street', models.CharField(max_length=64)),
+                        ('city', models.CharField(max_length=64)),
+                        ('state', models.CharField(max_length=2, validators=[django.core.validators.MinLengthValidator(2)])),
+                        ('zip_code', models.PositiveIntegerField(validators=[django.core.validators.MaxValueValidator(99999)])),
+                        ('country_iso_code', models.CharField(max_length=3, validators=[django.core.validators.MinLengthValidator(3)])),
+                    ],
+                ),
+                migrations.CreateModel(
+                    name='Letting',
+                    fields=[
+                        ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                        ('title', models.CharField(max_length=256)),
+                        ('address', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='lettings.Address')),
+                    ],
+                ),
             ],
-        ),
-        migrations.CreateModel(
-            name='Letting',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=256)),
-                ('address', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='lettings.Address')),
-            ],
+            database_operations=[],
         ),
     ]
+
+
+#      operations = [
+# # -        migrations.AlterField(
+# # -            model_name='sale',
+# # -            name='product',
+# # -            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='product.Product'),
+# # -        ),
+# +        migrations.SeparateDatabaseAndState(
+# +            state_operations=[
+# +                migrations.AlterField(
+# +                    model_name='sale',
+# +                    name='product',
+# +                    field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='product.Product'),
+# +                ),
+# +            ],
+# +            # You're reusing an existing table, so do nothing
+# +            database_operations=[],
+# +        )
+#      ]
