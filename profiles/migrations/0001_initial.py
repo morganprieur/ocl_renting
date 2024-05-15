@@ -11,7 +11,6 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        # ('oc_lettings_site', '0002_auto_20240514_1240.py'),
     ]
 
     operations = [
@@ -29,23 +28,3 @@ class Migration(migrations.Migration):
             database_operations=[],
         )
     ]
-
-
-#      operations = [
-# # -        migrations.AlterField(
-# # -            model_name='sale',
-# # -            name='product',
-# # -            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='product.Product'),
-# # -        ),
-# +        migrations.SeparateDatabaseAndState(
-# +            state_operations=[
-# +                migrations.AlterField(
-# +                    model_name='sale',
-# +                    name='product',
-# +                    field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='product.Product'),
-# +                ),
-# +            ],
-# +            # You're reusing an existing table, so do nothing
-# +            database_operations=[],
-# +        )
-#      ]
