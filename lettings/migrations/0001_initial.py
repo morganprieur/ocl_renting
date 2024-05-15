@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('oc_lettings_site', '0002_auto_20240514_1240.py'),
+        # ('oc_lettings_site', '0002_auto_20240514_1240.py'),
         # # ('product', '0001_initial'),
     ]
 
