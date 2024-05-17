@@ -4,7 +4,7 @@ from lettings.models import Address
 
 
 @pytest.fixture()
-def myaddress() -> Address:
+def one_address() -> Address:
     address = Address.objects.create(
         number=4,
         street="Bd Talabot",
