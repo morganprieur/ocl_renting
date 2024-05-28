@@ -6,6 +6,31 @@ from django.shortcuts import render
 def index(request):
     return render(request, 'index.html')
 
+
+def page_not_found(request, exception):
+    return render(request, '404.html', status=404)
+
+# def page_not_found(request, exception):
+#     response = render(request, "404.html", {})
+#     response.status_code = 404
+#     return response
+
+
+def server_error(request):
+    return render(request, '500.html', status=500)
+
+# def server_error(request, exception=None):
+#     response = render(request, "500.html", {
+#         'exception': exception
+#     })
+#     response.status_code = 500
+#     return response
+
+
+def hello_world_error(request):
+    raise Exception('This is a test error')
+
+
 # # Aenean leo magna, vestibulum et tincidunt fermentum, consectetur quis velit. Sed non placerat
 # massa. Integer est nunc, pulvinar a
 # # tempor et, bibendum id arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
