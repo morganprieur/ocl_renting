@@ -1,0 +1,9 @@
+# .dockerignore
+
+venv
+xenv
+brouillons
+
+# .env
+
+roadmap.md
