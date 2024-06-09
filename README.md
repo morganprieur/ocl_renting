@@ -52,6 +52,8 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 - `cd /path/to/Python-OC-Lettings-FR`
 - `source venv/bin/activate`
 - `pytest`
+Edit: 
+- `pytest --cov=. tests` 
 
 #### Base de données
 
@@ -74,3 +76,28 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 
 - Pour activer l'environnement virtuel, `.\venv\Scripts\activate` 
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
+
+
+
+## CI/CD 
+
+### Hébergement web 
+
+
+### Agent: Github actions 
+
+### Registry: Dockerhub docker run -d -p 8080:80 --name mon_containerdocker run -d -p 8080:80 --name mon_container mon _image mon _imagedocker run -d -p 8080:80 --name mon_container mon _image
+
+### Workflow 
+
+1. Créer une image du projet 
+    - Dockerfile 
+    - Lancer l'image dans un container pour voir si ça marche :    
+    `docker run -d -p 8080:80 --name <mon_container> <mon_image>` 
+2. Push tout le projet sur Github 
+3. Lancer pull request sur `main` 
+    - tests sont lancés par Github actions, suivant `python-app.yml` 
+4. Si les tests sont ok et pas de conflit : merger sur `main` 
+5. Github actions suit `docker-publish.yml` pour exporter l'image du projet sur Dockerhub 
+6. Github actions envoie l'image vers l'hébergement web pour le déployer / mettre à jour 
+
