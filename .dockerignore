@@ -3,6 +3,7 @@
 venv
 xenv
 brouillons
+.github/workflows
 
 # .env
 
