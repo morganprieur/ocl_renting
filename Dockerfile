@@ -13,7 +13,8 @@ RUN pip install -r requirements.txt
 COPY . /code/
 
 # Start the Django development server 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0"]
+# CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
 
 # # Tuto https://hackernoon.com/fr/comment-dockeriser-et-d%C3%A9ployer-des-applications-Django 
