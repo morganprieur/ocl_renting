@@ -20,4 +20,4 @@ jobs:
         python-version: "3.11"
     - name: Test
       # run: cd ./sources && python -m unittest test_calc.py 
-      run: pip install pytest && pytest --cov=. tests 
+      run: pip install pytest pytest-cov && pytest --cov=. tests 
