@@ -29,17 +29,33 @@ jobs:
           push: true
           tags: morganprr/ocl_renting:1.0.${{github.run_number}}
 
-# name: Deploy on OVH
-      - name: Container deploy OVH 
-        uses: ./.github/actions/docker-ovh-deploy
-        with:
-          # ssh_username: ${{ secrets.OVH_SSH_USERNAME }}
-          # ssh_host: ${{ secrets.OVH_SSH_HOST }}
-          ssh_private_key: ${{ secrets.OVH_SSH_PRIVATE_KEY }}
-          registry: ${{ secrets.OVH_REGISTRY_ENDPOINT }}
-          username: ${{ secrets.OVH_USERNAME }}
-          password: ${{ secrets.OVH_PASSWORD }}
-          image_name: ocl
+      - name: Deploy to OVH hosting
+        uses: pitscher/ovh-deploy-hosting-action@v1
+        env:
+          OVH_HOSTING_USER: ${{ secrets.OVH_USERNAME }}
+          OVH_HOSTING_PASSWORD: ${{ secrets.OVH_PASSWORD }}
+          # OVH_HOSTING_USER: ${{ secrets.OVH_HOSTING_USER }}
+          # OVH_HOSTING_PASSWORD: ${{ secrets.OVH_HOSTING_PASSWORD }}
+          OVH_HOSTING_DOMAIN: ssh debian@51.68.94.113
+          # OVH_HOSTING_DOMAIN: ssh.clusterXXX.hosting.ovh.net
+          REPOSITORY_NAME: my-ocl_renting
+          REPOSITORY_URL: https://github.com/morganprieur/ocl_renting.git
+          # REPOSITORY_NAME: my-repo
+          # REPOSITORY_URL: https://github.com/me/my-repo.git
+
+# # name: Deploy on OVH
+#       - name: Container deploy OVH 
+#         uses: ./.github/actions/docker-ovh-deploy
+#         with:
+#           # ssh_username: ${{ secrets.OVH_SSH_USERNAME }}
+#           # ssh_host: ${{ secrets.OVH_SSH_HOST }}
+#           ssh_private_key: ${{ secrets.OVH_SSH_PRIVATE_KEY }}
+#           registry: ${{ secrets.OVH_REGISTRY_ENDPOINT }}
+#           username: ${{ secrets.OVH_USERNAME }}
+#           password: ${{ secrets.OVH_PASSWORD }}
+#           image_name: ocl
+
+# Error: Can't find 'action.yml', 'action.yaml' or 'Dockerfile' under '/home/runner/work/ocl_renting/ocl_renting/.github/actions/docker-ovh-deploy'. Did you forget to run actions/checkout before running your local action? 
 
 # steps:
 #       # - 
