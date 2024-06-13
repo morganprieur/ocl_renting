@@ -1,9 +1,8 @@
-name: Docker Image CI
+name: DockerHub CI / OVH CD
 
 on:
   push:
     branches: [ "main" ]
-
   # pull_request:
   #   branches: [ "main" ]
 
@@ -15,21 +14,14 @@ jobs:
 
     steps:
 
-      -
-        name: Login to DockerHub
+      - name: Login to DockerHub
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      # -
-      #   name: Build the Docker image
-      #   uses: actions/checkout@v4
-      #   run: docker build . --file Dockerfile --tag ocl_renting:$(date +%s)
-      -
-        name: Set up Docker Buildx
+      - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
-      -
-        name: Build and push
+      - name: Build and push
         uses: docker/build-push-action@v3
         with:
           # context: .
@@ -37,6 +29,17 @@ jobs:
           push: true
           tags: morganprr/ocl_renting:1.0.${{github.run_number}}
 
+# name: Deploy on OVH
+      - name: Container deploy OVH 
+        uses: ./.github/actions/docker-ovh-deploy
+        with:
+          # ssh_username: ${{ secrets.OVH_SSH_USERNAME }}
+          # ssh_host: ${{ secrets.OVH_SSH_HOST }}
+          ssh_private_key: ${{ secrets.OVH_SSH_PRIVATE_KEY }}
+          registry: ${{ secrets.OVH_REGISTRY_ENDPOINT }}
+          username: ${{ secrets.OVH_USERNAME }}
+          password: ${{ secrets.OVH_PASSWORD }}
+          image_name: ocl
 
 # steps:
 #       # - 

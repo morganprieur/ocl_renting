@@ -1,0 +1,72 @@
+
+name: Deploy on OVH
+
+on:
+  push:
+    branches: [ "main" ]
+  # pull_request:
+  #   branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # -
+      #   name: Login to DockerHub
+      #   uses: docker/login-action@v2
+      #   with:
+      #     username: ${{ secrets.DOCKERHUB_USERNAME }}
+      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: OVH container deploy
+        # if: env.ACTIVE_HOSTING == 'ovh'
+        uses: ./.github/actions/docker-ovh-deploy
+        with:
+          ssh_username: ${{ secrets.OVH_SSH_USERNAME }}
+          ssh_host: ${{ secrets.OVH_SSH_HOST }}
+          ssh_private_key: ${{ secrets.OVH_SSH_PRIVATE_KEY }}
+          registry: ${{ secrets.OVH_REGISTRY_ENDPOINT }}
+          username: ${{ secrets.OVH_USERNAME }}
+          password: ${{ secrets.OVH_PASSWORD }}
+          image_name: api
+
+      # - name: OVH container deploy
+      #   if: env.ACTIVE_HOSTING == 'ovh'
+      #   uses: ./.github/actions/docker-ovh-deploy
+      #   with:
+      #     ssh_username: ${{ secrets.OVH_SSH_USERNAME }}
+      #     ssh_host: ${{ secrets.OVH_SSH_HOST }}
+      #     ssh_private_key: ${{ secrets.OVH_SSH_PRIVATE_KEY }}
+      #     registry: ${{ secrets.OVH_REGISTRY_ENDPOINT }}
+      #     username: ${{ secrets.OVH_USERNAME }}
+      #     password: ${{ secrets.OVH_PASSWORD }}
+      #     image_name: api
+
+
+# name: Deploy on OVH
+
+# # on: [push]
+# on: 
+#   push:
+#     branches: [ "main" ]
+
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+#     name: Deploy on ovh
+#     # name: Deploy my nice code
+#     steps:
+#     - name: Deploy to OVH hosting
+#       uses: pitscher/ovh-deploy-hosting-action@v1
+#       env:
+#         OVH_HOSTING_USER: ${{ secrets.OVH_HOSTING_USER }}
+#         OVH_HOSTING_PASSWORD: ${{ secrets.OVH_HOSTING_PASSWORD }}
+#         OVH_HOSTING_DOMAIN: ssh.clusterXXX.hosting.ovh.net
+#         REPOSITORY_NAME: my-repo
+#         REPOSITORY_URL: https://github.com/me/my-repo.git
+
+
