@@ -46,8 +46,9 @@ jobs:
       - name: Kubernetes Deployment
         uses: TanmoySG/k-deploy-action@v0.2.2-alpha
         with:
+          kubeconfig: ~/config
           # kubeconfig: path/to/kubeconfig
-          kubeconfig: ${{ secrets.kubeconfig }}
+          # kubeconfig: ${{ secrets.kubeconfig }}
           namespace: 'default'
           # manifest: path/to/resources/file
 
