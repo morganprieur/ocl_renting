@@ -14,6 +14,14 @@ jobs:
 
     steps:
 
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Afficher le répertoire de travail
+        run: | 
+          echo $PWD 
+          ls -l
+
       - name: Login to DockerHub
         uses: docker/login-action@v2
         with:
@@ -46,8 +54,6 @@ jobs:
       - name: Kubernetes Deployment
         uses: TanmoySG/k-deploy-action@v0.2.2-alpha
         with: 
-          - name: Afficher le répertoire de travail
-            run: echo $PWD
           # kubeconfig: https://m7uad9.c1.sbg5.k8s.ovh.net/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
           kubeconfig: .github/workflows/config
           # kubeconfig: ~/config
