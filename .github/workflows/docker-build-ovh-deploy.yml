@@ -43,9 +43,18 @@ jobs:
       #     # REPOSITORY_NAME: my-repo
       #     # REPOSITORY_URL: https://github.com/me/my-repo.git
 
+      - name: Kubernetes Deployment
+        uses: TanmoySG/k-deploy-action@v0.2.2-alpha
+        with:
+          # kubeconfig: path/to/kubeconfig
+          kubeconfig: ${{ secrets.kubeconfig }}
+          namespace: 'default'
+          # manifest: path/to/resources/file
+
+
 # # name: Deploy on OVH
       # - name: Container deploy OVH 
-      #   uses: ./.github/actions/docker-ovh-deploy
+      #   uses: ./.github/actions/docker-ovh-deploy 
       #   with:
       #     # ssh_username: ${{ secrets.OVH_SSH_USERNAME }}
       #     # ssh_host: ${{ secrets.OVH_SSH_HOST }}
