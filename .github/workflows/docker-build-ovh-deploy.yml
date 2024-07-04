@@ -20,7 +20,7 @@ jobs:
       - name: Afficher le répertoire de travail
         run: | 
           echo $PWD 
-          ls -l
+          ls -la
 
       - name: Login to DockerHub
         uses: docker/login-action@v2
@@ -44,7 +44,9 @@ jobs:
           OVH_HOSTING_PASSWORD: ${{ secrets.OVH_PASSWORD }}
       #     # OVH_HOSTING_USER: ${{ secrets.OVH_HOSTING_USER }}
       #     # OVH_HOSTING_PASSWORD: ${{ secrets.OVH_HOSTING_PASSWORD }}
-          OVH_HOSTING_DOMAIN: sjraqy.nodes.c1.sbg5.k8s.ovh.net
+          OVH_HOSTING_DOMAIN: ssh user@51.68.94.113
+          # OVH_HOSTING_DOMAIN: m7uad9.c1.sbg5.k8s.ovh.net
+          # OVH_HOSTING_DOMAIN: sjraqy.nodes.c1.sbg5.k8s.ovh.net
       #     # OVH_HOSTING_DOMAIN: ssh.clusterXXX.hosting.ovh.net
           REPOSITORY_NAME: ocl_renting
           REPOSITORY_URL: https://github.com/morganprieur/ocl_renting.git
