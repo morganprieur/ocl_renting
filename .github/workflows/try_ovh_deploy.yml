@@ -27,7 +27,8 @@ jobs:
       run: docker save myapp:latest -o myapp.tar
 
     - name: Copy Docker image to server
-      run: scp -o StrictHostKeyChecking=no myapp.tar ${{ secrets.OVH_USERNAME }}@${{ secrets.SERVER_IP }}:~/myapp.tar
+      run: scp -o StrictHostKeyChecking=no myapp.tar ${{ secrets.OVH_USERNAME }}@51.68.94.113:~/myapp.tar
+      # run: scp -o StrictHostKeyChecking=no myapp.tar ${{ secrets.OVH_USERNAME }}@${{ secrets.SERVER_IP }}:~/myapp.tar
 
     - name: Load Docker image on server
       run: |
