@@ -21,12 +21,13 @@ jobs:
 
     - name: Build Docker image
       run: docker build -t myapp:latest .
+      # run: docker build -t myapp:latest .
 
     - name: Save Docker image to a tar file
       run: docker save myapp:latest -o myapp.tar
 
     - name: Copy Docker image to server
-      run: scp -o StrictHostKeyChecking=no myapp.tar ${{ secrets.USERNAME }}@${{ secrets.SERVER_IP }}:~/myapp.tar
+      run: scp -o StrictHostKeyChecking=no myapp.tar ${{ secrets.OVH_USERNAME }}@${{ secrets.SERVER_IP }}:~/myapp.tar
 
     - name: Load Docker image on server
       run: |
