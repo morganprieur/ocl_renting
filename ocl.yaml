@@ -18,6 +18,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ocl_renting-deployment
+  namespace: test_ocl
   labels:
     app: ocl_renting
 spec:
@@ -25,7 +26,6 @@ spec:
   selector:
     matchLabels:
       app: ocl_renting
-  namespace: test_ocl
   template:
     metadata:
       labels:
