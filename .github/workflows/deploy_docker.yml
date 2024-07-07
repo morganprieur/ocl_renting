@@ -18,19 +18,19 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build Docker image
-        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/ocl_renting:1.0.12 .  
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/d_ocl_renting:1.0.12 .  
 
       - name: Push Docker image to Docker Hub
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/ocl_renting:1.0.12
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/d_ocl_renting:1.0.12
 
       - name: Generate Kubeconfig
         env:
           KUBECONFIG: ${{ secrets.KUBECONFIG }}
         run: echo "$KUBECONFIG" > kubeconfig.yaml
 
-      # Try: 
-      - name: Create namespace 
-        run: kubectl create ns hello-app
+      # # Try: 
+      # - name: Create namespace 
+      #   run: kubectl create ns test_ocl
 
       - name: Deploy image on Kubernetes
         run: kubectl apply -f ocl.yaml -n test_ocl --kubeconfig=kubeconfig.yaml 
