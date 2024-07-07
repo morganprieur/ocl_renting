@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ocl_renting
+  labels:
+    app: ocl_renting
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: http
+  selector:
+    app: ocl_renting
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ocl_renting-deployment
+  labels:
+    app: ocl_renting
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ocl_renting
+  template:
+    metadata:
+      labels:
+        app: ocl_renting
+    spec:
+      containers:
+      - name: ocl_renting
+        image: morganprr/ocl_renting:1.0.12
+        ports:
+        - containerPort: 80
