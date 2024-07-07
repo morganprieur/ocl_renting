@@ -30,7 +30,7 @@ jobs:
 
       # # Try: 
       # - name: Create namespace 
-      #   run: kubectl create ns test_ocl
+      #   run: kubectl create ns test_ocl 
 
       - name: Deploy image on Kubernetes
         run: kubectl apply -f ocl.yaml -n test_ocl --kubeconfig=kubeconfig.yaml 
