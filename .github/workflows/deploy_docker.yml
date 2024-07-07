@@ -1,4 +1,4 @@
-name: Build and Push Docker Image
+name: Build Push an Deploy Docker Image
 
 on:
   push:
@@ -29,10 +29,10 @@ jobs:
         run: echo "$KUBECONFIG" > kubeconfig.yaml
 
       - name: Deploy image on Kubernetes
-        run: kubectl apply -f ocl.yaml -n ocl-app --kubeconfig=kubeconfig.yaml 
+        run: kubectl apply -f ocl.yaml -n test_ocl --kubeconfig=kubeconfig.yaml 
 
       - name: 
-        run: kubectl get services -n ocl-app -l app=ocl_renting  --kubeconfig=kubeconfig.yaml
+        run: kubectl get services -n test_ocl -l app=ocl_renting  --kubeconfig=kubeconfig.yaml
     
       - name: Clean-Up
         run: rm kubeconfig.yaml
