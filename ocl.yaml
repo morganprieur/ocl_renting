@@ -25,6 +25,7 @@ spec:
   selector:
     matchLabels:
       app: ocl_renting
+  namespace: test_ocl
   template:
     metadata:
       labels:
