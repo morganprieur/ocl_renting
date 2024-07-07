@@ -32,7 +32,7 @@ jobs:
         run: kubectl apply -f ocl.yaml -n test-ocl --kubeconfig=kubeconfig.yaml 
 
       - name: 
-        run: kubectl get services -n test-ocl -l app=ocl_renting  --kubeconfig=kubeconfig.yaml
+        run: kubectl get services -n test-ocl -l app=ocl-renting  --kubeconfig=kubeconfig.yaml
     
       - name: Clean-Up
         run: rm kubeconfig.yaml
