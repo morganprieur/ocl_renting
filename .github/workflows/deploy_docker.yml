@@ -28,6 +28,10 @@ jobs:
           KUBECONFIG: ${{ secrets.KUBECONFIG }}
         run: echo "$KUBECONFIG" > kubeconfig.yaml
 
+      # Try: 
+      - name: Create namespace 
+        run: kubectl create ns hello-app
+
       - name: Deploy image on Kubernetes
         run: kubectl apply -f ocl.yaml -n test_ocl --kubeconfig=kubeconfig.yaml 
 
