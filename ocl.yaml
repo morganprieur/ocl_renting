@@ -33,6 +33,6 @@ spec:
     spec:
       containers:
       - name: ocl-renting
-        image: morganprr/ocl_renting:latest
+        image: morganprr/ocl_renting-1:latest
         ports:
         - containerPort: 80
