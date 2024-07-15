@@ -43,7 +43,7 @@ jobs:
           file: ./Dockerfile
           push: true
           # tags: ffranc95/calc:1.0.${{github.run_number}}
-          tags: morganprr/ocl_renting-1:1.0.${{github.run_number}}
+          tags: morganprr/ocl_renting-1:latest
 
       # Trying 
       # - name: Build Docker image
