@@ -8,9 +8,16 @@ spec:
   type: LoadBalancer
   ports:
   - port: 80
-    targetPort: 80
+    targetPort: 8000
     protocol: TCP
     name: http
+# spec:
+#   type: LoadBalancer
+#   ports:
+#   - port: 80
+#     targetPort: 80
+#     protocol: TCP
+#     name: http
   selector:
     app: ocl-renting
 ---
